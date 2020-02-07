@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 
 namespace calc
 {
@@ -7,17 +8,30 @@ namespace calc
         private readonly string _inpStr;
         private int _counter;
         private readonly int _len;
+        private readonly int _round;
 
-        public Parser(string inpStr)
+        public Parser(string inpStr, int round)
         {
             _inpStr = inpStr;
             _len = inpStr.Length;
+            _round = round;
         }
 
         public Expression Parse()
         {
+            var a = abc();
+            if (!a)
+                return null;
             var result = ParseFactor();
             return result;
+        }
+
+        private bool abc()
+        {
+            const string pattern = @"[-+]?[0-9]+(\.[0-9]+)?[\+\-\*\/][-+]?[0-9]+(\.[0-9]+)?";
+            var regular = new Regex(pattern);
+            var can = regular.IsMatch(_inpStr);
+            return can;
         }
 
         private Expression ParseFactor()
@@ -29,7 +43,7 @@ namespace calc
                 if (op != Operations.None)
                 {
                     var right = ParseDouble();
-                    result = new Factor(op, result, right);
+                    result = new Factor(op, _round, right, result);
                 }
                 else
                     break;
@@ -54,7 +68,7 @@ namespace calc
                 ++_counter;
             }
 
-            if (CurrentChar() != '.') return new Double(isNegative, value, 0);
+            if (CurrentChar() != '.') return new Double(isNegative, value, 0, _round);
             leftValue = value;
             value = 0;
             ++_counter;
@@ -64,7 +78,7 @@ namespace calc
                 value = value * 10 + (long)char.GetNumericValue(CurrentChar());
                 ++_counter;
             }
-            return new Double(isNegative, leftValue, value);
+            return new Double(isNegative, leftValue, value, _round);
         }
         
         private Operations ParseFacOpcode()

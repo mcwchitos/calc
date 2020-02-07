@@ -7,12 +7,14 @@ namespace calc
     {
         private readonly Operations _node;
         private readonly Expression _left, _right;
+        private readonly int _round;
 
-        public Factor(Operations node, Expression left = null, Expression right = null)
+        public Factor(Operations node, int round, Expression right = null, Expression left = null)
         {
             _node = node;
             _left = left;
             _right = right;
+            _round = round;
         }
 
         public override double Calculate()
@@ -37,7 +39,7 @@ namespace calc
                 default:
                     return 0;
             }
-            return Math.Round(op.Apply(tmpLeft, tmpRight), 2);
+            return Math.Round(op.Apply(tmpLeft, tmpRight), _round);
         }
     }
 }

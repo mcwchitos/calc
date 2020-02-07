@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using NUnit;
-using NUnit.Framework;
 
 namespace calc
 {
@@ -9,8 +7,8 @@ namespace calc
     {
         static void Main(string[] args)
         {
-            var t = new Tester();
-            // t.allTests();
+            var t = new Tester(2);
+            t.allTests();
             while (true)
             {
                 Console.WriteLine();
@@ -20,10 +18,18 @@ namespace calc
                         select c
                     ).ToArray());
 
-                var parser = new Parser(line);
+                var parser = new Parser(line, 2);
                 var tree = parser.Parse();
+                if (tree == null)
+                {
+                    Console.WriteLine("incorrect input try again");
+                    continue;
+                }
+
                 var result = tree.Calculate();
-                Console.WriteLine(result);
+                Console.SetCursorPosition(Console.CursorSize, Console.CursorTop - 1);
+                
+                Console.Write(" = {0}",result);
             }
         }
     }
