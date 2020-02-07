@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 
 namespace calc
@@ -19,6 +20,10 @@ namespace calc
             test1();
             test2();
             test3();
+            test4();
+            test5();
+            test6();
+            test7();
             Console.WriteLine("All tests have been passed");
         }
         
@@ -42,7 +47,7 @@ namespace calc
                     select c
                 ).ToArray());
             var parser = new Parser(line, _round);
-            Assert.AreEqual(Math.Round(-2.7 * -2.7, 2), parser.Parse().Calculate());
+            Assert.AreEqual(Math.Round(-2.7 * -2.7, _round), parser.Parse().Calculate());
             Console.WriteLine("Test 1 has been passed");
         }
 
@@ -77,6 +82,54 @@ namespace calc
             Assert.AreEqual(Math.Round(2.0/3.0, 2), parser2.Parse().Calculate());
             
             Console.WriteLine("Test 3 has been passed");
+        }
+
+        private void test4()
+        {
+            var line = "2.7 / 0.9";
+            line = new string((from c in line
+                    where !char.IsWhiteSpace(c)
+                    select c
+                ).ToArray());
+            var parser = new Parser(line, _round);
+            Assert.AreEqual(Math.Round(2.7 / 0.9, _round), parser.Parse().Calculate());
+            Console.WriteLine("Test 4 has been passed");
+        }
+        
+        private void test5()
+        {
+            var line = "2.7 + 0.9";
+            line = new string((from c in line
+                    where !char.IsWhiteSpace(c)
+                    select c
+                ).ToArray());
+            var parser = new Parser(line, _round);
+            Assert.AreEqual(Math.Round(2.7 + 0.9, _round), parser.Parse().Calculate());
+            Console.WriteLine("Test 5 has been passed");
+        }
+        
+        private void test6()
+        {
+            var line = "2.7 * 0.9";
+            line = new string((from c in line
+                    where !char.IsWhiteSpace(c)
+                    select c
+                ).ToArray());
+            var parser = new Parser(line, _round);
+            Assert.AreEqual(Math.Round(2.7 * 0.9, _round), parser.Parse().Calculate());
+            Console.WriteLine("Test 6 has been passed");
+        }
+        
+        private void test7()
+        {
+            var line = "2.7 - 0.9";
+            line = new string((from c in line
+                    where !char.IsWhiteSpace(c)
+                    select c
+                ).ToArray());
+            var parser = new Parser(line, _round);
+            Assert.AreEqual(Math.Round(2.7 - 0.9, _round), parser.Parse().Calculate());
+            Console.WriteLine("Test 7 has been passed");
         }
     }
 }
