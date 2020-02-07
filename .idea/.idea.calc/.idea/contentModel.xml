@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Onlymine\Projects\Rider\calc" t="IncludeRecursive">
+      <e p=".gitignore" t="Include" />
+      <e p="add.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="calc.csproj" t="IncludeRecursive" />
+      <e p="calc.sln" t="IncludeFlat" />
+      <e p="div.cs" t="Include" />
+      <e p="Double.cs" t="Include" />
+      <e p="Expression.cs" t="Include" />
+      <e p="Factor.cs" t="Include" />
+      <e p="global.json" t="Include" />
+      <e p="mult.cs" t="Include" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp3.0" t="Include">
+            <e p="calc.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="Operations.cs" t="Include" />
+      <e p="Ops.cs" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Parser.cs" t="Include" />
+      <e p="Program.cs" t="Include" />
+      <e p="sub.cs" t="Include" />
+      <e p="Tester.cs" t="Include" />
+    </e>
+    <e p="C:\Users\Rish\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Rish\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_calc.-437198486.00" t="ExcludeRecursive" />
+  </component>
+</project>
